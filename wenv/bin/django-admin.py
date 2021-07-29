@@ -1,5 +1,4 @@
-#!/home/priyansh/dev/git_repos/Covid-19/wenv/bin/python
-# When the django-admin.py deprecation ends, remove this script.
+
 import warnings
 
 from django.core import management

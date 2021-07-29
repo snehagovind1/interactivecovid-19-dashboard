@@ -86,23 +86,11 @@ Covid-19 Dashboard
     </div>
   </div>
 </div>
-<div class="fixed-footer">
-  <div style="display: flex; justify-content: center;align-items: center;">
-    <span>
-      <span style="color:azure ">Made with ❤ By</span>
-      <a href="https://github.com/priyansh18">
-        <img src="https://img.icons8.com/bubbles/50/000000/github.png" />
-      </a><b>Priyansh Singhal</b>,
-      <a href="https://github.com/dakshtrehan"><img
-          src="https://img.icons8.com/bubbles/50/000000/github.png" /></a><b>Daksh Trehan</b> & <a
-        href="https://github.com/abhishekjaglan"><img
-          src="https://img.icons8.com/bubbles/50/000000/github.png" /></a><b>Abhishek Jaglan</b></span>
-  </div>
-</div>
+
 {% endblock %}
 
 {% block contentscript %}
-<!-- Left Map -->
+
 <script>
   var ctx = document.getElementById("myChart").getContext("2d");
   var chartOptions = {
@@ -116,10 +104,9 @@ Covid-19 Dashboard
         },
       ],
       yAxes: [
-        // {barPercentage: 1},
-        // {gridLines:{drawBorder: false}},
+        
         { ticks: { display: false } },
-        // {ticks: {mirror: true}},
+        
         { display: false },
       ],
       elements: {
@@ -145,18 +132,17 @@ Covid-19 Dashboard
   options: chartOptions,
   });
 </script>
-<!-- World Map -->
+
 <script>
   var data2 = {{ dataForMap| safe}}
   Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
 
-    // Prevent logarithmic errors in color calulcation
+   
     data2.forEach(function (p) {
       p.value = (p.value < 1 ? 1 : p.value);
     });
 
 
-    // Initiate the chart
     Highcharts.mapChart('MyMapChart', {
 
       chart: {
@@ -173,7 +159,7 @@ Covid-19 Dashboard
         title: {
           text: 'Infected Population Count',
           style: {
-            color: ( // theme
+            color: ( 
               Highcharts.defaultOptions &&
               Highcharts.defaultOptions.legend &&
               Highcharts.defaultOptions.legend.title &&
@@ -224,7 +210,7 @@ Covid-19 Dashboard
     });
   });
 </script>
-<!-- Line Chart -->
+
 <script>
   var dataset = {{ datasetsForLine| safe}};
   var chartOptions2 = {
@@ -263,7 +249,7 @@ Covid-19 Dashboard
   });
 
 </script>
-<!-- Heat chart -->
+
 <script>
   var options = {
     series: {{dataForheatMap| safe}},

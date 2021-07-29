@@ -20,11 +20,10 @@ def _deactivate(args):
         del $VIRTUAL_ENV_PROMPT
 
     if "nondestructive" not in args:
-        # Self destruct!
         del aliases["deactivate"]
 
 
-# unset irrelevant variables
+
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
@@ -35,7 +34,6 @@ $PATH = $PATH[:]
 $PATH.add($VIRTUAL_ENV + _get_sep() + "bin", front=True, replace=True)
 
 if ${...}.get("PYTHONHOME", ""):
-    # unset PYTHONHOME if set
     $_OLD_VIRTUAL_PYTHONHOME = $PYTHONHOME
     del $PYTHONHOME
 

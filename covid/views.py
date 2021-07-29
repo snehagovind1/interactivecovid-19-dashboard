@@ -5,7 +5,7 @@ import random
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from django.http import HttpResponse,HttpRequest
-# Create your views here.
+
 
 df = pd.read_csv('cdc_qa.csv',
                  header=0,
@@ -27,7 +27,7 @@ def indexPage(request):
     barPlotData = barPlotData.sort_values(by='values', ascending=False)
     barPlotVals = barPlotData['values'].values.tolist()
     countryNames = barPlotData['Country/Region'].values.tolist()
-    # print("Country Names", countryNames)
+    
     dataForMap = mapDataCal(barPlotData, countryNames)
     dataForheatMap, dateCat = getHeatMapData(confirmedGlobal, countryNames)
     showMap = "True"
@@ -68,12 +68,12 @@ def chatBot(request):
                     if(welcome(user_response)!=None):
                         wResponse  = welcome(user_response)
                         welcomeResponse.append(wResponse)
-                        # print('welcomeResponse',welcomeResponse)
+                        
                     else:
-                        # print("Chatbot : ",end="")
+                        
                         cResponse = COVIDbot(user_response)
                         welcomeResponse.append(cResponse)
-                        # print('welcomeResponse',welcomeResponse)
+                        
 
             welcomeCovidResponse = zip(InputCovid,welcomeResponse)
             context = {'welcomeCovidResp':welcomeCovidResponse} 
@@ -115,8 +115,7 @@ def getHeatMapData(confirmedGlobal, countryNames):
         except:
             pass
     dateCat = list(list(confirmedGlobal.columns.values)[-6:-1])
-    # print("dateCat",dateCat)
-    # print("dataForheatMap",dataForheatMap)
+   
     return dataForheatMap, dateCat
 
 
@@ -180,7 +179,6 @@ def prediction(request):
             imagesAppendR = "/static/img/" + newSelectedCountry + "r.png"
         return render(request,'prediction.html',{'Country':countryNames,'selectedCountry':newSelectedCountry,'imagesAppend':imagesAppend,'imagesAppendR':imagesAppendR})
 
-    # print("Country Names", countryNames)
     return render(request,'prediction.html',{'Country':countryNames,'selectedCountry':selectedCountry,'imagesAppend':imagesAppend,'imagesAppendR':imagesAppendR})
 
 
